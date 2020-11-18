@@ -11,6 +11,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
@@ -75,6 +77,12 @@ public class Main extends JFrame {
 				} catch (NumberFormatException e2) {
 					// Manejamos el error
 					System.out.println("El texto introducido no es un número válido.");
+					JOptionPane.showMessageDialog(
+							Main.this, 
+							"El texto introducido no es un número válido.",
+							"Error",
+							JOptionPane.WARNING_MESSAGE
+					);
 					txtNumero1.requestFocus();
 					txtNumero1.selectAll();
 				}
@@ -106,6 +114,12 @@ public class Main extends JFrame {
 				} catch (NumberFormatException e2) {
 					// Manejamos el error
 					System.out.println("El texto introducido no es un número válido.");
+					JOptionPane.showMessageDialog(
+							Main.this, 
+							"El texto introducido no es un número válido.",
+							"Error",
+							JOptionPane.WARNING_MESSAGE
+					);
 					txtNumero2.requestFocus();
 					txtNumero2.selectAll();
 				}
@@ -157,11 +171,60 @@ public class Main extends JFrame {
 		contentPane.add(btnResta);
 		
 		JButton btnProducto = new JButton("*");
+		btnProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * Obtenemos el resultado del objeto calculadora y lo mostramos
+				 * en el txtResultado
+				 */
+				
+				// Obtenemos el resultado del producto y lo convertimos a String
+				String resultado = Double.toString(calc.multiplicar());
+				
+				// Asignamos el texto con el resultado al txtResultado
+				txtResultado.setText(resultado);
+			}
+		});
 		btnProducto.setFont(new Font("Ubuntu Mono", Font.BOLD, 20));
 		btnProducto.setBounds(107, 154, 50, 50);
 		contentPane.add(btnProducto);
 		
 		JButton btnCociente = new JButton("/");
+		btnCociente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * Obtenemos el resultado del objeto calculadora y lo mostramos
+				 * en el txtResultado
+				 */
+				
+				// Validamos que no se intente realizar una división por 0
+				if (calc.getNumero2() == 0) {
+					
+					// Le indicamos al usuario que no puede realizar una división por 0
+					JOptionPane.showMessageDialog(
+							Main.this,
+							"No es posible realizar una división entre 0.",
+							"Error",
+							JOptionPane.ERROR_MESSAGE
+					);
+					
+					// Seleccionamos el número a corregir
+					txtNumero2.requestFocus();
+					txtNumero2.selectAll();
+					
+				} else {
+					
+					// Obtenemos el resultado del cociente y lo convertimos a String
+					String resultado = Double.toString(calc.dividir());
+				
+					// Asignamos el texto con el resultado al txtResultado
+					txtResultado.setText(resultado);
+					
+				}
+				
+				
+			}
+		});
 		btnCociente.setFont(new Font("Ubuntu Mono", Font.BOLD, 20));
 		btnCociente.setBounds(158, 154, 50, 50);
 		contentPane.add(btnCociente);

@@ -29,6 +29,16 @@ public class Calculadora {
 		return numero1 - numero2;
 	}
 	
+	public double multiplicar() {
+		// Calculamos y regresamos el resultado
+		return numero1 * numero2;
+	}
+	
+	public double dividir() {
+		// Calculamos y regresamos el resultado
+		return numero1 / numero2;
+	}
+	
 }
 
 
