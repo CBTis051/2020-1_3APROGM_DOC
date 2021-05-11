@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Main-Class: org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader
+Rsrc-Class-Path: ./ jakarta.activation-api-1.2.1.jar jakarta.ws.rs-api-2
+ .1.6.jar wink-1.4.jar slf4j-simple-1.6.1.jar slf4j-api-1.6.1.jar jakart
+ a.xml.bind-api-2.3.2.jar
+Rsrc-Main-Class: mx.edu.cbtis051.hraa.sistema.Splash
+Class-Path: .
+
